@@ -39,7 +39,7 @@ public class DynamicIntArrayTest {
 
     @Test
     public void deleteValue() {
-        assertArrayEquals("Arrays are not equal", new int[]{2,3,4}, dynamicIntArray.deleteValue(1,2,3,4));
+        assertArrayEquals("Arrays are not equal", new int[]{2,3,4}, dynamicIntArray.deleteValue(1,1,2,3,4));
     }
 
     @Test
