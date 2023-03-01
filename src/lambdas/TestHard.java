@@ -9,10 +9,11 @@ interface MyFuncInt{
     int fib(int i);
 }
 public class TestHard {
-    HashSet<Integer> hs = new HashSet();
-    int i = 0;
+    HashSet<Integer> hs = new HashSet<>();
+
     public TestHard(int i){
         this.fib(mf, i);
+        this.fib(a-> (a>0)?1:2, i);
         System.out.println(Arrays.stream(hs.toArray()).sorted().collect(Collectors.toList()));
     }
 
@@ -22,7 +23,7 @@ public class TestHard {
 
     MyFuncInt mf = new MyFuncInt() {
         int q = 0;
-        HashSet<Integer> hs1 = new HashSet();
+        final HashSet<Integer> hs1 = new HashSet<>();
         @Override
         public int fib(int i) {
             if (hs1.contains(i)) return i;
@@ -35,8 +36,8 @@ public class TestHard {
         }
     };
 
-
     public static void main(String[] args) {
-        new TestHard(88);
+
+        new TestHard(77);
     }
 }

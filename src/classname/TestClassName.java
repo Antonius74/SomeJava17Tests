@@ -14,7 +14,7 @@ class ClassName {
     public static void main(String[] a) {
 
         new ClassName().printSome(1,2,3,4,5);
-        Optional<String> o = a[0].toString().describeConstable();
+        Optional<String> o = a[0].describeConstable();
         System.out.println(o);
 
     }

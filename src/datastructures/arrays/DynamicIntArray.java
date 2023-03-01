@@ -24,7 +24,7 @@ class DynamicIntArray {
      */
     public int[] insertLast(int v, int... t) {
         int[] a = new int[t.length + 1];
-        for (int i = 0; t.length > i; i++) a[i] = t[i];
+        System.arraycopy(t, 0, a, 0, t.length);
         a[t.length] = v;
         return a;
     }
