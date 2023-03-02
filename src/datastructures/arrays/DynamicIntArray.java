@@ -1,5 +1,7 @@
 package datastructures.arrays;
 
+import java.util.Arrays;
+
 class DynamicIntArray {
     /**
      * Simple array from vararg
@@ -98,15 +100,17 @@ class DynamicIntArray {
      * insert element in an ordered array
      */
     public int[] insertOrdered(int v, int... t) {
-        return order(insertLast(v, t));
+        return bubbleSort(insertLast(v, t));
     }
 
     /**
-     * order array
+     * order array bubble
      */
-    public int[] order(int... a) {
+    public int[] bubbleSort(int... a) {
+        int count = 0;
         for (int i = 0; i < a.length - 1; i++) {
             for (int j = 0; j < a.length - i - 1; j++) {
+                count++;
                 if (a[j] > a[j + 1]) {
                     int tmp = a[j + 1];
                     a[j + 1] = a[j];
@@ -114,6 +118,28 @@ class DynamicIntArray {
                 }
             }
         }
+        System.out.println(count);
+        return a;
+    }
+
+    /**
+     * order array selection
+     */
+    public int[] selectionSort(int... a) {
+        int count = 0;
+        for (int i = 0; i < a.length; i++) {
+            int minValIdx = i;
+            for (int j = i+1; j < a.length; j++) {
+                count++;
+                if (a[j]<a[minValIdx]) minValIdx = j;
+            }
+            if (minValIdx!=i) {
+                int tmp = a[i];
+                a[i] = a[minValIdx];
+                a[minValIdx] = tmp;
+            }
+        }
+        System.out.println(count);
         return a;
     }
 
@@ -127,6 +153,10 @@ class DynamicIntArray {
     public static void main(String[] args) {
         DynamicIntArray da = new DynamicIntArray();
         System.out.println(da.toString(da.deleteValue(1, 1,2,3)));
+        Arrays.stream(da.bubbleSort(new int[]{3,2,1})).forEach(System.out::print);
+        System.out.println();
+        Arrays.stream(da.selectionSort(new int[]{3,2,1})).forEach(System.out::print);
+        Arrays.sort(new int[]{});
     }
 
 }

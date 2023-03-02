@@ -49,10 +49,12 @@ public class DynamicIntArrayTest {
 
     @Test
     public void order() {
-        assertArrayEquals("Arrays are not equal", new int[]{1,2,3,4}, dynamicIntArray.order(4,3,2,1));
+        assertArrayEquals("Arrays are not equal", new int[]{1,2,3,4}, dynamicIntArray.bubbleSort(4,3,2,1));
     }
 
     @Test
     public void testToString() {
     }
+
+
 }
