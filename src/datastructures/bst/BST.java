@@ -18,7 +18,6 @@ public class BST<T extends Comparable<T>> {
     }
 
     void addNode(T val) {
-
         if (head==null) {
             head = new Node<>(val);
         } else {
