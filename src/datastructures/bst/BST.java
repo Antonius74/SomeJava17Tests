@@ -11,7 +11,6 @@ class Node<T> {
 }
 public class BST<T extends Comparable<T>> {
     Node<T> head;
-    Node<T> next;
 
     public int compare(T t1, T t2){
         return t1.compareTo(t2);
@@ -21,7 +20,7 @@ public class BST<T extends Comparable<T>> {
         if (head==null) {
             head = new Node<>(val);
         } else {
-            next = head;
+            Node<T> next = head;
             while (next != null) {
                 if (compare(next.value, val) > 0) {
                     next = next.left;
@@ -29,7 +28,9 @@ public class BST<T extends Comparable<T>> {
                     next = next.right;
                 }
             }
+            System.out.println(next);
             next = new Node<>(val);
+            System.out.println(next);
 
         }
 
@@ -56,7 +57,7 @@ public class BST<T extends Comparable<T>> {
         bst.addNode(1);
         bst.addNode(2);
         bst.addNode(3);
-        bst.readNode();
+        bst.readNode(bst.head);
     }
 
 }
