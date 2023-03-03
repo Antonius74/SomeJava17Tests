@@ -25,15 +25,12 @@ public class BST<T extends Comparable<T>> {
             next = head;
             while (next != null) {
                 if (compare(next.value, val) > 0) {
-                    //System.out.println("val l" + val);
                     next = next.left;
                 } else if (compare(next.value, val) < 0) {
-                    //System.out.println("val r" + val);
                     next = next.right;
                 }
             }
             next = new Node<>(val);
-            //System.out.println(next.value);
 
         }
 
@@ -47,7 +44,6 @@ public class BST<T extends Comparable<T>> {
         }
     }
     void readNode(Node<T> node) {
-        //System.out.println(node);
         if (node != null) {
             System.out.println(node.value);
             readNode(node.left);
