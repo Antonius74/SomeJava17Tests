@@ -20,18 +20,27 @@ public class BST<T extends Comparable<T>> {
         if (head==null) {
             head = new Node<>(val);
         } else {
-            Node<T> next = head;
-            while (next != null) {
-                if (compare(next.value, val) > 0) {
-                    next = next.left;
-                } else if (compare(next.value, val) < 0) {
-                    next = next.right;
+            Node<T> node = head;
+            while (true){
+                if (compare(val, node.value)<0){
+                    if (node.left==null) {
+                        node.left = new Node<>(val);
+                        break;
+                    } else {
+                        node = node.left;
+                    }
+                } else if (compare(val, node.value)>0){
+                    if (node.right==null) {
+                        node.right = new Node<>(val);
+                        break;
+                    } else {
+                        node = node.right;
+                    }
                 }
             }
-            System.out.println(next);
-            next = new Node<>(val);
-            System.out.println(next);
-
+            //System.out.println(node);
+            node = new Node<>(val);
+            System.out.println(node);
         }
 
     }
