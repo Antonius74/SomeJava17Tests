@@ -1,5 +1,7 @@
 package datastructures.bst;
 
+import java.util.Comparator;
+
 class Node<T> {
     public Node(T value) {
         this.value = value;
@@ -12,9 +14,6 @@ class Node<T> {
 public class BST<T extends Comparable<T>> {
     private Node<T> head;
 
-    private int compare(T t1, T t2){
-        return t1.compareTo(t2);
-    }
 
     private void addNode(T val) {
         if (head==null) {
@@ -22,7 +21,8 @@ public class BST<T extends Comparable<T>> {
         } else {
             Node<T> node = head;
             while (true){
-                if (compare(val, node.value)<0){
+
+                if (compare.compare(val, node.value)<0){
                     //node = node.left;
                     if (node.left==null) {
                         node.left = new Node<>(val);
@@ -30,7 +30,7 @@ public class BST<T extends Comparable<T>> {
                     } else {
                         node = node.left;
                     }
-                } else if (compare(val, node.value)>0){
+                } else if (compare.compare(val, node.value)>0){
                     //node = node.right;
                     if (node.right==null) {
                         node.right = new Node<>(val);
@@ -43,6 +43,10 @@ public class BST<T extends Comparable<T>> {
         }
 
     }
+
+    Comparator<T> compare = Comparable::compareTo;
+
+
 
     private void preOrderTraverse() {
         if (head!=null) {
@@ -62,13 +66,28 @@ public class BST<T extends Comparable<T>> {
 
     public static void main(String[] args) {
         BST<Integer> bst = new BST<>();
-        bst.addNode(5);
+/*        bst.addNode(5);
         bst.addNode(1);
         bst.addNode(2);
         bst.addNode(6);
         bst.addNode(7);
         bst.addNode(8);
-        bst.preOrderTraverse(bst.head);
+        bst.preOrderTraverse(bst.head);*/
+        System.out.println(bst.compare.compare(1,3));
     }
 
+}
+
+class some{
+    static int some(int j) {
+        int i = j-1;
+        while (i>1) {
+            if (j%(--i)==0) return i;
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(some(31));
+    }
 }
