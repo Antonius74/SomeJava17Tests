@@ -81,6 +81,7 @@ interface PrimeCheckI {
 }
 
 abstract class PrimeCheckC implements PrimeCheckI{
+    @Override
     public boolean isPrime(int j) {
             int i = j-1;
             while (i>1) {
