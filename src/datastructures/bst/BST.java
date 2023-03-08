@@ -1,67 +1,108 @@
 package datastructures.bst;
 
+import java.util.Comparator;
+
 class Node<T> {
     public Node(T value) {
         this.value = value;
     }
-
     Node<T> left;
     Node<T> right;
     T value;
 }
+
 public class BST<T extends Comparable<T>> {
-    Node<T> head;
-    Node<T> next;
+    private Node<T> head;
 
-    public int compare(T t1, T t2){
-        return t1.compareTo(t2);
-    }
 
-    void addNode(T val) {
-
+    private void addNode(T val) {
         if (head==null) {
             head = new Node<>(val);
         } else {
-            next = head;
-            while (next != null) {
-                if (compare(next.value, val) > 0) {
-                    //System.out.println("val l" + val);
-                    next = next.left;
-                } else if (compare(next.value, val) < 0) {
-                    //System.out.println("val r" + val);
-                    next = next.right;
+            Node<T> node = head;
+            while (true){
+                if (compare.compare(val, node.value)<0){
+                    //node = node.left;
+                    if (node.left==null) {
+                        node.left = new Node<>(val);
+                        break;
+                    } else {
+                        node = node.left;
+                    }
+                } else if (compare.compare(val, node.value)>0){
+                    //node = node.right;
+                    if (node.right==null) {
+                        node.right = new Node<>(val);
+                        break;
+                    } else {
+                        node = node.right;
+                    }
                 }
             }
-            next = new Node<>(val);
-            //System.out.println(next.value);
-
         }
 
     }
 
-    void readNode() {
+    Comparator<T> compare = Comparable::compareTo;
+
+    public void preOrderTraverse() {
         if (head!=null) {
+            preOrderTraverse(head.right);
             System.out.println(head.value);
-            readNode(head.right);
-            readNode(head.left);
+            preOrderTraverse(head.left);
         }
     }
-    void readNode(Node<T> node) {
-        //System.out.println(node);
+    private void preOrderTraverse(Node<T> node) {
         if (node != null) {
             System.out.println(node.value);
-            readNode(node.left);
-            readNode(node.right);
+            preOrderTraverse(node.left);
+            preOrderTraverse(node.right);
         }
     }
 
 
     public static void main(String[] args) {
         BST<Integer> bst = new BST<>();
+/*        bst.addNode(5);
         bst.addNode(1);
         bst.addNode(2);
-        bst.addNode(3);
-        bst.readNode();
+        bst.addNode(6);
+        bst.addNode(7);
+        bst.addNode(8);
+        bst.preOrderTraverse(bst.head);*/
+        System.out.println(bst.compare.compare(1,3));
     }
+
+}
+interface PrimeCheckI {
+    default boolean isIPrime(int j){return true;}
+    default boolean isPrime(int j) {
+        return isIPrime(j);
+    }
+}
+
+abstract class PrimeCheckC implements PrimeCheckI{
+    @Override
+    public boolean isPrime(int j) {
+            int i = j-1;
+            while (i>1) {
+                if (j%(i)==0)
+                    return false;
+                else i--;
+            }
+            return true;
+        }
+    }
+
+class IsPrime extends PrimeCheckC implements PrimeCheckI  {
+
+    public boolean isPrime(int j) {
+        return super.isPrime(j);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new IsPrime().isPrime(8));
+    }
+
 
 }

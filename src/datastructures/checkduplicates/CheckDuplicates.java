@@ -8,9 +8,9 @@ public class CheckDuplicates {
         int count = 0;
         HashSet<Integer> hm = new HashSet<>();
         for (int j : i) {
-            count++;
+            //count++;
             if (hm.contains(j)) {
-                System.out.println(count);
+                //System.out.println(count);
                 return true;
             }
             hm.add(j);
@@ -22,9 +22,9 @@ public class CheckDuplicates {
         int z = 0, l = 0, count = 0;
         for (int j : i) {
             for (int q : i) {
-                count++;
+                //count++;
                 if (z != l && j == q) {
-                    System.out.println(count);
+                    //System.out.println(count);
                     return true;
                 }
                 ++l;
