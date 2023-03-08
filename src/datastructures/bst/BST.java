@@ -6,7 +6,6 @@ class Node<T> {
     public Node(T value) {
         this.value = value;
     }
-
     Node<T> left;
     Node<T> right;
     T value;
@@ -21,7 +20,6 @@ public class BST<T extends Comparable<T>> {
         } else {
             Node<T> node = head;
             while (true){
-
                 if (compare.compare(val, node.value)<0){
                     //node = node.left;
                     if (node.left==null) {
@@ -46,9 +44,7 @@ public class BST<T extends Comparable<T>> {
 
     Comparator<T> compare = Comparable::compareTo;
 
-
-
-    private void preOrderTraverse() {
+    public void preOrderTraverse() {
         if (head!=null) {
             preOrderTraverse(head.right);
             System.out.println(head.value);
@@ -77,17 +73,34 @@ public class BST<T extends Comparable<T>> {
     }
 
 }
+interface PrimeCheckI {
+    default boolean isIPrime(int j){return true;}
+    default boolean isPrime(int j) {
+        return isIPrime(j);
+    }
+}
 
-class some{
-    static int some(int j) {
-        int i = j-1;
-        while (i>1) {
-            if (j%(--i)==0) return i;
+abstract class PrimeCheckC implements PrimeCheckI{
+    public boolean isPrime(int j) {
+            int i = j-1;
+            while (i>1) {
+                if (j%(i)==0)
+                    return false;
+                else i--;
+            }
+            return true;
         }
-        return -1;
+    }
+
+class IsPrime extends PrimeCheckC implements PrimeCheckI  {
+
+    public boolean isPrime(int j) {
+        return super.isPrime(j);
     }
 
     public static void main(String[] args) {
-        System.out.println(some(31));
+        System.out.println(new IsPrime().isPrime(8));
     }
+
+
 }
