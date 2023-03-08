@@ -10,6 +10,7 @@ class Node<T> {
     Node<T> right;
     T value;
 }
+
 public class BST<T extends Comparable<T>> {
     private Node<T> head;
 
